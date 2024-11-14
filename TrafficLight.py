@@ -17,7 +17,7 @@ class DFA:
         return current_state in self.accept_states
 
 if __name__ == "__main__":
-    # Example DFA for strings ending in 'ab'
+    # Example DFA for strings ending in 'ba'
     states = {'q0', 'q1', 'q2'}
     alphabet = {'a', 'b'}
     transitions = {
@@ -31,6 +31,6 @@ if __name__ == "__main__":
     dfa = DFA(states, alphabet, transitions, start_state, accept_states)
 
     print(dfa.accepts("aba"))  # True
-    print(dfa.accepts("abab"))  # True
+    print(dfa.accepts("abab"))  # False
     print(dfa.accepts("abb"))  # False
     print(dfa.accepts("a"))  # False
