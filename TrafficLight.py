@@ -17,20 +17,23 @@ class DFA:
         return current_state in self.accept_states
 
 if __name__ == "__main__":
-    # Example DFA for strings ending in 'ba'
-    states = {'q0', 'q1', 'q2'}
-    alphabet = {'a', 'b'}
+    states = {'Red', 'Green', 'Yellow', 'Emergency_Active'}
+    # t = timer
+    # e = emergency_trigger
+    # c = emergecny_clear
+    # s = sensor
+    alphabet = {'t', 'e', 'c', 's'}
     transitions = {
-        'q0': {'a': 'q0', 'b': 'q1'},
-        'q1': {'a': 'q2', 'b': 'q1'},
-        'q2': {'a': 'q0', 'b': 'q1'}
+        'Red': {'t': 'Green', 'e': 'Emergency_Active'},
+        'Green': {'t': 'Yellow', 'e': 'Emergency_Active'},
+        'Yellow': {'t': 'Red', 'e': 'Emergency_Active'},
+        'Emergency_Active': {'t': 'Emergency_Active', 'c': "Red", 's': 'Emergency_Active'}
     }
-    start_state = 'q0'
-    accept_states = {'q2'}
+    start_state = 'Red'
+    accept_states = {'Red', 'Green', 'Emergency_Active'}
 
     dfa = DFA(states, alphabet, transitions, start_state, accept_states)
 
-    print(dfa.accepts("aba"))  # True
-    print(dfa.accepts("abab"))  # False
-    print(dfa.accepts("abb"))  # False
-    print(dfa.accepts("a"))  # False
+    print(dfa.accepts("tttetc"))  # True
+    print(dfa.accepts("e"))  # True
+    print(dfa.accepts("tt"))  # False
