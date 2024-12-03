@@ -135,7 +135,7 @@ if __name__ == "__main__":
     code = "\n".join(user_input)
 
     # Initialize the syntax checker
-    checker = ArraySyntaxChecker()
+    checker = ArraySyntax()
     try:
         checker.tokenize(code)   
         checker.parse()          # Parse input
