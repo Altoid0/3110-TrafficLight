@@ -1,8 +1,7 @@
-# Traffic Light Controller System
-The system will control traffic flow at an intersection, manage the transition between Red, Yellow, 
-and Green states, and include priority handling for emergency vehicles. When an emergency vehicle is 
-detected, the system should override the normal operation, immediately giving the green light to the
-direction where the emergency vehicle is approaching.
+# Array Initialization and Access Syntax Checker
+Build a syntax checker that validates array initialization and
+access in a simple programming language. The syntax checker will verify the correctness of
+array declarations, initializations, and element access expressions.
 
 ## Requirements
 * [Python] 3.11 and above
