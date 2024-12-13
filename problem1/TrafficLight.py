@@ -10,11 +10,15 @@ class DFA:
 
     def accepts(self, string):
         current_state = self.start_state
-        for char in string:
-            if char not in self.alphabet:
-                return False
-            current_state = self.transitions[current_state][char]
-        return current_state in self.accept_states
+        try:
+            for char in string:
+                if char not in self.alphabet:
+                    raise ValueError(f"Invalid character '{char}' in input string.")
+                current_state = self.transitions[current_state][char]
+            return current_state in self.accept_states
+        except KeyError as e:
+            print(f"Transition error: {e}. This input string leads to an undefined state.")
+            return False
 
 if __name__ == "__main__":
     states = {'Red', 'Green', 'Yellow', 'Emergency_Active'}
@@ -34,6 +38,15 @@ if __name__ == "__main__":
 
     dfa = DFA(states, alphabet, transitions, start_state, accept_states)
 
-    print(dfa.accepts("tttetc"))  # True
-    print(dfa.accepts("e"))  # True
-    print(dfa.accepts("tt"))  # False
+    while True:
+        user_input = input("Enter a string of inputs using ['t', 'e', 'c' and 's'] (or type 'exit' to quit): ").strip()
+        if user_input.lower() == 'exit':
+            print("Exiting the program.")
+            break
+        try:
+            if dfa.accepts(user_input):
+                print(f"The DFA accepts the string '{user_input}'.")
+            else:
+                print(f"The DFA does not accept the string '{user_input}'.")
+        except ValueError as e:
+            print(e)
